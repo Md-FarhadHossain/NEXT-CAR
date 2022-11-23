@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../../context/AuthContext'
 
 const Navbar = () => {
+  const {user,logout} = useContext(UserContext)
+  const handleLogout = () => {
+    logout()
+    .then(() => {})
+    .catch(err => console.log(err))
+  }
   return (
     <div>
         <div className="navbar container mx-auto">
@@ -25,7 +32,7 @@ const Navbar = () => {
         <li><a>Item 3</a></li>
       </ul>
     </div>
-    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+    <Link to='/' className="font-bold normal-case text-2xl">Next-Car</Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal p-0">
@@ -44,7 +51,9 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <Link to='/login' className="btn">Login</Link>
+    {
+      user ? <button onClick={handleLogout} className="btn btn-error">Logout</button> : <Link to='/login' className="btn">Login</Link>
+    }
   </div>
 </div>
     </div>
