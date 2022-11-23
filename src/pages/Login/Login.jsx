@@ -80,6 +80,8 @@ const handleGoogleSignin = () => {
                   {errors.password?.message}
                 </small>
               </div>
+
+              
               
               <div className="form-control mt-6">
                 <button className="btn btn-primary text-white bg-gradient-to-r from-secondary to-primary">
