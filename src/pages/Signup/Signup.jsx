@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { UserContext } from "../../context/AuthContext";
 
 const Signup = () => {
-const {signup,updateUser} = useContext(UserContext)
+const {signup,updateUser, googleSignin} = useContext(UserContext)
   const schema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().email().required(),
@@ -16,6 +16,8 @@ const {signup,updateUser} = useContext(UserContext)
       .oneOf([yup.ref("password"), null])
       .required(),
   });
+
+
   const {
     register,
     handleSubmit,
@@ -23,9 +25,12 @@ const {signup,updateUser} = useContext(UserContext)
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+//   Sign up
   const onSubmit = (data) => {
     console.log(data);
 
+    // Sign up with email and password
     signup(data.email, data.password)
       .then((result) => {
 
@@ -44,6 +49,16 @@ const {signup,updateUser} = useContext(UserContext)
         toast.error(error.message);
       });
   };
+
+  // Sign up with google
+const handleGoogleSignin = () => {
+    googleSignin()
+    .then((result) => {
+        console.log(result);
+        toast.success("Sign up successfully!");
+    })
+    .catch(err => console.log(err))
+}
 
   return (
     <div>
@@ -131,12 +146,12 @@ const {signup,updateUser} = useContext(UserContext)
 
               <div className="divider">OR</div>
 
+            </form>
               <div className="form-control">
-                <button className="btn border-gray-500 no-animation hover:text-white font-semibold text-gray-600 border-2 bg-transparent">
+                <button onClick={handleGoogleSignin} className="btn border-gray-500 no-animation hover:text-white font-semibold text-gray-600 border-2 bg-transparent">
                   CONTINUE WITH GOOGLE
                 </button>
               </div>
-            </form>
           </div>
         </div>
       </div>
