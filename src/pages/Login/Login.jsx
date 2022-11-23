@@ -7,7 +7,7 @@ import { Link} from 'react-router-dom'
 import { UserContext } from "../../context/AuthContext";
 
 const Login = () => {
-  const { login } = useContext(UserContext);
+  const { login, googleSignin } = useContext(UserContext);
   const schema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().min(6).required(),
@@ -31,6 +31,17 @@ const Login = () => {
         toast.error(error.message);
       });
   };
+
+    // Sign up with google
+const handleGoogleSignin = () => {
+    googleSignin()
+    .then((result) => {
+        console.log(result);
+        toast.success("Sign up successfully!");
+    })
+    .catch(err => console.log(err))
+}
+
   return (
     <div>
       <div className="hero h-[80vh] w-full">
@@ -90,7 +101,7 @@ const Login = () => {
               <div className="divider">OR</div>
 
               <div className="form-control">
-                <button className="btn border-gray-500 no-animation hover:text-white font-semibold text-gray-600 border-2 bg-transparent">
+              <button onClick={handleGoogleSignin} className="btn border-gray-500 no-animation hover:text-white font-semibold text-gray-600 border-2 bg-transparent">
                   CONTINUE WITH GOOGLE
                 </button>
               </div>
