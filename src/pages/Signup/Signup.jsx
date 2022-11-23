@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { UserContext } from "../../context/AuthContext";
 
 const Signup = () => {
-const {signup,updateUser, googleSignin} = useContext(UserContext)
+  const { signup, updateUser, googleSignin } = useContext(UserContext);
   const schema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().email().required(),
@@ -17,7 +17,6 @@ const {signup,updateUser, googleSignin} = useContext(UserContext)
       .required(),
   });
 
-
   const {
     register,
     handleSubmit,
@@ -26,21 +25,20 @@ const {signup,updateUser, googleSignin} = useContext(UserContext)
     resolver: yupResolver(schema),
   });
 
-//   Sign up
+  //   Sign up
   const onSubmit = (data) => {
     console.log(data);
 
     // Sign up with email and password
     signup(data.email, data.password)
       .then((result) => {
-
         const userInfo = {
-          displayName: data.name
-        }
+          displayName: data.name,
+        };
 
         updateUser(userInfo)
-        .then(() => {})
-        .catch(error => console.log(error))
+          .then(() => {})
+          .catch((error) => console.log(error));
 
         console.log(result);
         toast.success("Sign up successfully!");
@@ -51,14 +49,14 @@ const {signup,updateUser, googleSignin} = useContext(UserContext)
   };
 
   // Sign up with google
-const handleGoogleSignin = () => {
+  const handleGoogleSignin = () => {
     googleSignin()
-    .then((result) => {
+      .then((result) => {
         console.log(result);
         toast.success("Sign up successfully!");
-    })
-    .catch(err => console.log(err))
-}
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div>
@@ -127,6 +125,16 @@ const handleGoogleSignin = () => {
                   {errors.confirmPassword?.message}
                 </small>
               </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Accout Type</span>
+                </label>
+
+                <select {...register("accoutType")} className="select select-bordered w-full">
+                  <option selected>Buyer</option>
+                  <option>Seller</option>
+                </select>
+              </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary text-white bg-gradient-to-r from-secondary to-primary">
                   Sign Up
@@ -145,13 +153,15 @@ const handleGoogleSignin = () => {
               </label>
 
               <div className="divider">OR</div>
-
             </form>
-              <div className="form-control">
-                <button onClick={handleGoogleSignin} className="btn border-gray-500 no-animation hover:text-white font-semibold text-gray-600 border-2 bg-transparent">
-                  CONTINUE WITH GOOGLE
-                </button>
-              </div>
+            <div className="form-control">
+              <button
+                onClick={handleGoogleSignin}
+                className="btn border-gray-500 no-animation hover:text-white font-semibold text-gray-600 border-2 bg-transparent"
+              >
+                CONTINUE WITH GOOGLE
+              </button>
+            </div>
           </div>
         </div>
       </div>
