@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-// import { UserContext } from "../../context/AuthContext";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
+import { UserContext } from "../../context/AuthContext";
 
 const Signup = () => {
-//   const { signup,updateUser } = useContext(UserContext);
+const {signup,updateUser} = useContext(UserContext)
   const schema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().email().required(),
@@ -26,23 +26,23 @@ const Signup = () => {
   const onSubmit = (data) => {
     console.log(data);
 
-    // signup(data.email, data.password)
-    //   .then((result) => {
+    signup(data.email, data.password)
+      .then((result) => {
 
-    //     const userInfo = {
-    //       displayName: data.name
-    //     }
+        const userInfo = {
+          displayName: data.name
+        }
 
-    //     updateUser(userInfo)
-    //     .then(() => {})
-    //     .catch(error => console.log(error))
+        updateUser(userInfo)
+        .then(() => {})
+        .catch(error => console.log(error))
 
-    //     console.log(result);
-    //     toast.success("Sign up successfully!");
-    //   })
-    //   .catch((error) => {
-    //     toast.error(error.message);
-    //   });
+        console.log(result);
+        toast.success("Sign up successfully!");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
