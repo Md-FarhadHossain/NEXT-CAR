@@ -1,11 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/AuthContext'
 import logo from '../../assets/logo.png'
 import { AccountType } from '../../context/UserAccoutContext'
+import { useState } from 'react'
 
 const Navbar = () => {
+ 
   const {user,logout} = useContext(UserContext)
+ 
+ 
+
 
   const handleLogout = () => {
     logout()
@@ -15,7 +20,8 @@ const Navbar = () => {
   const menu = <>
     <li><Link to='/'>Home</Link></li>
     <li><Link to='/blog'>Blog</Link></li>
-   
+    {user ? <li><Link to='/dashbord'>Dashbord</Link></li> : ''}
+
   </>
   return (
     <div>
@@ -40,6 +46,9 @@ const Navbar = () => {
     {
       user ? <button onClick={handleLogout} className="btn btn-error">Logout</button> : <Link to='/login' className="btn">Login</Link>
     }
+     <label htmlFor="dashbord-sidebar"  tabIndex={1} className="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+      </label>
   </div>
 </div>
     </div>

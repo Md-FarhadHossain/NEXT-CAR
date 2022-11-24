@@ -1,11 +1,13 @@
 import React, { createContext } from 'react'
+import { useState } from 'react';
 
 export const AccountType = createContext();
 
 const UserAccoutContext = ({children}) => {
 
 
-    // User Details
+
+    // Send User Details
 
     const userDataInsert = (data) => {
        return fetch('http://localhost:5000/user-details', {
@@ -17,6 +19,8 @@ const UserAccoutContext = ({children}) => {
       })
       
     }
+ 
+    
 
     const value = {userDataInsert}
   return (
