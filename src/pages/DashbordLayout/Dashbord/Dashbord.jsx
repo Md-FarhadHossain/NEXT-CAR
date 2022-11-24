@@ -8,7 +8,7 @@ import { UserContext } from "../../../context/AuthContext";
 
 const Dashbord = () => {
   const [userData, setUserData] = useState({});
-  const { user, logout } = useContext(UserContext);
+  const { user} = useContext(UserContext);
 
   // const schema = yup.object().shape({
   //   name: yup.string().required(),

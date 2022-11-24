@@ -46,6 +46,7 @@ const AddAProduct = () => {
 
   const onSumbit = async (data) => {
     data.email = user?.email;
+    data.sellerName = user?.displayName;
     // data.image = data.image[0]
 
     console.log(data.createdOn);
