@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
+import { UserContext } from "../../../context/AuthContext";
 import CategoryCarModal from "../CategoryCarModal/CategoryCarModal";
 
 const CarBrandCategory = () => {
-  const carData = useLoaderData();
+    const carData = useLoaderData();
+    const {user} = useContext(UserContext)
   const cars = carData?.data;
   console.log(cars);
+
+  const handleOrderSubmit = () => {
+    toast.success('Car is booked')
+  }
 
   return (
     <div className="container mx-auto">
@@ -40,23 +47,33 @@ const CarBrandCategory = () => {
                   id="my-modal-3"
                   className="modal-toggle"
                 />
-                <div className="modal">
-                  <div className="modal-box relative">
-                    <label
-                      htmlFor="my-modal-3"
-                      className="btn btn-sm btn-circle absolute right-2 top-2"
-                    >
-                      ✕
-                    </label>
-                    <h3 className="text-lg font-bold">
-                      Congratulations random Internet user!
-                    </h3>
-                    <p className="py-4">
-                      You've been selected for a chance to get one year of
-                      subscription to use Wikipedia for free!
-                    </p>
+                {
+                    car && <div className="modal">
+                    <div className="modal-box relative">
+                      <label
+                        htmlFor="my-modal-3"
+                        className="btn btn-sm btn-circle absolute right-2 top-2"
+                      >
+                        ✕
+                      </label>
+                      <h3 className="text-lg font-bold">
+                        {car.carName}
+                      </h3>
+                      
+                          <div>
+                          <input type="text" defaultValue={user?.displayName} placeholder="Type" className="input input-bordered w-full my-2 bg-base-200 border-none pointer-events-none" />
+                          <input type="text" defaultValue={user?.email} placeholder="Type" className="input input-bordered w-full my-2 bg-base-200 border-none pointer-events-none" />
+                          <input type="text" defaultValue={car?.resalePrice} placeholder="Type" className="input input-bordered w-full my-2 bg-base-200 border-none pointer-events-none" />
+  
+                          <h3 className="text-lg font-semibold">Call me:</h3>
+                          <h3 className="text-lg font-semibold">Meet Loaction: New York</h3>
+  
+                              <label onClick={handleOrderSubmit} htmlFor="my-modal-3"  className="btn w-full">Sumbit</label>
+                          </div>
+  
+                    </div>
                   </div>
-                </div>
+                }
               </div>
             </div>
           </div>
