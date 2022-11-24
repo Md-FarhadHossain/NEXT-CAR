@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
-const ItemsCategory = ({setCategoryCar}) => {
+const ItemsCategory = () => {
   const [categories, setCategories] = useState([]);
   
  
@@ -43,7 +43,7 @@ const ItemsCategory = ({setCategoryCar}) => {
               </div>
             </div>
             <div className="flex justify-end">
-              <Link onClick={() => setCategoryCar(category.brand)} to={`/category/${category?.brand}`} className="text-2xl btn btn-sm">{<AiOutlineArrowRight />}</Link>
+              <Link to={`/category/${category?.brand}`} className="text-2xl btn btn-sm">{<AiOutlineArrowRight />}</Link>
             </div>
           </div>
         ))}
