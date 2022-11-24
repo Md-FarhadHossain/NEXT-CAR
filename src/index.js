@@ -4,13 +4,16 @@ import "./index.css";
 import App from "./App";
 import { Toaster } from "react-hot-toast";
 import AuthContext from "./context/AuthContext";
+import UserAccoutContext from "./context/UserAccoutContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AuthContext>
-      <App />
-      <Toaster />
-    </AuthContext>
+    <UserAccoutContext>
+      <AuthContext>
+        <App />
+        <Toaster />
+      </AuthContext>
+    </UserAccoutContext>
   </React.StrictMode>
 );

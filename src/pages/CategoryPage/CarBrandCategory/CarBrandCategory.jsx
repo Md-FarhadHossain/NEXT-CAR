@@ -38,7 +38,7 @@ const CarBrandCategory = () => {
               <div className="card-actions justify-end">
                 {/* The button to open modal */}
                 <label htmlFor="my-modal-3" className="btn">
-                  open modal
+                  Book Now
                 </label>
 
                 {/* Put this part before </body> tag */}
@@ -63,7 +63,7 @@ const CarBrandCategory = () => {
                           <div>
                           <input type="text" defaultValue={user?.displayName} placeholder="Type" className="input input-bordered w-full my-2 bg-base-200 border-none pointer-events-none" />
                           <input type="text" defaultValue={user?.email} placeholder="Type" className="input input-bordered w-full my-2 bg-base-200 border-none pointer-events-none" />
-                          <input type="text" defaultValue={car?.resalePrice} placeholder="Type" className="input input-bordered w-full my-2 bg-base-200 border-none pointer-events-none" />
+                          <input type="text" defaultValue={`$ ${car?.resalePrice}`} placeholder="Type" className="input input-bordered w-full my-2 bg-base-200 border-none pointer-events-none" />
   
                           <h3 className="text-lg font-semibold">Call me:</h3>
                           <h3 className="text-lg font-semibold">Meet Loaction: New York</h3>

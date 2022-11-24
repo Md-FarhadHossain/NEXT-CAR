@@ -2,9 +2,11 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/AuthContext'
 import logo from '../../assets/logo.png'
+import { AccountType } from '../../context/UserAccoutContext'
 
 const Navbar = () => {
   const {user,logout} = useContext(UserContext)
+
   const handleLogout = () => {
     logout()
     .then(() => {})
@@ -13,6 +15,7 @@ const Navbar = () => {
   const menu = <>
     <li><Link to='/'>Home</Link></li>
     <li><Link to='/blog'>Blog</Link></li>
+   
   </>
   return (
     <div>

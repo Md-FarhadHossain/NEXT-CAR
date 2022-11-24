@@ -4,9 +4,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { UserContext } from "../../context/AuthContext";
+import  { AccountType } from "../../context/UserAccoutContext";
 
 const Signup = () => {
   const { signup, updateUser, googleSignin } = useContext(UserContext);
+  const {userDataInsert} = useContext(AccountType)
   const schema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().email().required(),
@@ -37,8 +39,13 @@ const Signup = () => {
         };
 
         updateUser(userInfo)
-          .then(() => {})
+          .then(() => {
+
+           
+
+          })
           .catch((error) => console.log(error));
+
 
         console.log(result);
         toast.success("Sign up successfully!");
@@ -46,6 +53,13 @@ const Signup = () => {
       .catch((error) => {
         toast.error(error.message);
       });
+
+      userDataInsert(data)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      })
+      
   };
 
   // Sign up with google
