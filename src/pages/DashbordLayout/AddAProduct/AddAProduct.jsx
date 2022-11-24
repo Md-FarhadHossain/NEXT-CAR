@@ -4,13 +4,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { json } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { UserContext } from "../../../context/AuthContext";
 
 const AddAProduct = () => {
   const [categories, setCategories] = useState([]);
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext);
+  const navigation = useNavigate()
 
   const url = "http://localhost:5000/category-brand";
   useEffect(() => {
@@ -24,8 +26,14 @@ const AddAProduct = () => {
     originalPrice: yup.number().positive().required(),
     resalePrice: yup.number().positive().required(),
     yearsOfUse: yup.number(),
+    productCategory: yup.string().required(),
+    conditionType: yup.string().required(),
     mobileNumber: yup.number().required(),
     location: yup.string().required(),
+    // image: yup.string().required(),
+    createdOn: yup.date().default(function () {
+      return new Date();
+    }),
   });
 
   const {
@@ -37,34 +45,39 @@ const AddAProduct = () => {
   });
 
   const onSumbit = async (data) => {
-    data.email = user?.email
+    data.email = user?.email;
     // data.image = data.image[0]
-    
-    
+
+    console.log(data.createdOn);
     const formData = new FormData();
-    formData.append('image', data.image[0]);
+    formData.append("image", data.image[0]);
     console.log(formData);
 
-    const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGBB_KEY}`
-    const res = await fetch(url, {
+    
+    const imagRes = await fetch(`https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGBB_KEY}`, {
       method: "POST",
-        body: formData
-    })
-    const result = await res.json()
+      body: formData,
+    });
+    const result = await imagRes.json();
 
-    // fetch(url, {
-    //   method: "POST",
-    //   body: formData
-    // })
-    // .then(res => res.json())
-    // .then(result => {
-    //   console.log(result)
-    //   data.image = result.data.url
-    // })
-    // .catch(err => console.log(err))
-    data.image = result.data.url
-    console.log(data)
-    console.log(result)
+    data.image = result?.data?.url;
+    console.log(data);
+    console.log(result);
+
+    const postRes = await fetch(`http://localhost:5000/add-a-car`, {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(data),
+    });
+    const postData = await postRes.json();
+    console.log(postData)
+    if(postData.acknowledged){
+      toast.success('Car Added Successfully!')
+      navigation('/dashbord/my-product')
+    }
+
   };
 
   return (
@@ -118,8 +131,13 @@ const AddAProduct = () => {
         <div className="form-control">
           <select
             {...register("conditionType")}
-            className="select select-bordered w-full"
+            className={`select select-bordered w-full ${
+              errors.conditionType ? "select-error" : "select-bordered"
+            }`}
           >
+            <option disabled defaultValue="Car Condition">
+              Car Condition
+            </option>
             <option>Excellent</option>
             <option>Good</option>
             <option>Fair</option>
@@ -129,8 +147,13 @@ const AddAProduct = () => {
         <div className="form-control">
           <select
             {...register("productCategory")}
-            className="select select-bordered w-full"
+            className={`select select-bordered w-full ${
+              errors.productCategory ? "select-error" : "select-bordered"
+            }`}
           >
+            <option key="1" disabled defaultValue="Car Brand Name">
+              Car Brand Name
+            </option>
             {categories.map((category) => (
               <option key={category._id}>{category.brand}</option>
             ))}
@@ -172,9 +195,12 @@ const AddAProduct = () => {
           <div>
             <input
               type="file"
-              name='image'
+              required
+              name="image"
               {...register("image")}
-              className="file-input file-input-bordered w-full max-w-xs"
+              className={`file-input file-input-bordered w-full max-w-xs ${
+                errors.image ? "file-input-error" : "file-input-bordered"
+              }`}
             />
           </div>
         </div>

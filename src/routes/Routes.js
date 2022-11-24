@@ -11,6 +11,7 @@ import axios from 'axios'
 import Dashbord from '../pages/DashbordLayout/Dashbord/Dashbord'
 import DashbordData from '../pages/DashbordLayout/DashbordData/DashbordData'
 import AddAProduct from '../pages/DashbordLayout/AddAProduct/AddAProduct'
+import MyPorduct from '../pages/DashbordLayout/MyPorduct/MyPorduct'
 
 const Routes = () => {
     const router = createBrowserRouter([
@@ -52,6 +53,10 @@ const Routes = () => {
                 {
                     path: 'add-a-product',
                     element: <AddAProduct />
+                },
+                {
+                    path: 'my-product',
+                    element: <MyPorduct />
                 }
             ]
         }

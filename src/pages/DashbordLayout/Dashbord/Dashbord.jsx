@@ -58,7 +58,7 @@ const Dashbord = () => {
                   <Link to="add-a-product">Add A product</Link>
                 </li>
                 <li>
-                  <Link to="/my-produch">My Products</Link>
+                  <Link to="my-product">My Products</Link>
                 </li>
                 <li>
                   <Link to="/blog">My buyers</Link>
