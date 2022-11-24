@@ -5,6 +5,9 @@ import Login from '../pages/Login/Login'
 import Signup from '../pages/Signup/Signup'
 import Main from '../utilities/Main'
 import Blog from '../pages/Blog/Blog.jsx'
+import CarBrandCategory from '../pages/CategoryPage/CarBrandCategory/CarBrandCategory'
+import { async } from '@firebase/util'
+import axios from 'axios'
 
 const Routes = () => {
     const router = createBrowserRouter([
@@ -27,6 +30,11 @@ const Routes = () => {
                 {
                     path: '/blog',
                     element: <Blog />
+                },
+                {
+                    path: '/category/:id',
+                    element: <CarBrandCategory />,
+                    loader: async ({params}) => axios(`http://localhost:5000/category-car?brand=${params.id}`)
                 }
             ]
         }

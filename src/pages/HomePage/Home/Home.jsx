@@ -1,14 +1,15 @@
 import React from 'react'
+import Category from '../../CategoryPage/Category/Category'
 import AdvertisedItems from '../AdvertisedItems/AdvertisedItems'
 import HeroSection from '../HeroSection/HeroSection'
-import ItemsCategory from '../ItemsCategory/ItemsCategory'
+
 
 const Home = () => {
   return (
     <div>
         <HeroSection />
         <AdvertisedItems />
-        <ItemsCategory />
+        <Category />
     </div>
   )
 }
