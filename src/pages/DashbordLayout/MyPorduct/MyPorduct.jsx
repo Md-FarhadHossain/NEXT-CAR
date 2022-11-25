@@ -1,20 +1,50 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {useQuery} from '@tanstack/react-query'
 import { UserContext } from '../../../context/AuthContext'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const MyPorduct = () => {
+  const [res, setRes] = useState(true);
+  const [cars, setCars] = useState([])
     const {user} = useContext(UserContext)
 
-    const {data:allcarsDetails = [], status} = useQuery({
-        queryKey: ['email',user?.email],
-        queryFn: async () => await axios(`http://localhost:5000/car-details?email=${user?.email}`)
-    })
-    const cars = allcarsDetails?.data
+    // const {data:allcarsDetails = [], status, refetch} = useQuery({
+    //     queryKey: ['email',user?.email],
+    //     queryFn: async () => await axios(`http://localhost:5000/car-details?email=${user?.email}`)
+    // })
+    // const cars = allcarsDetails?.data
  
-    if(status === 'loading') {
-        return <><h1 className="text-3xl font-semibold">Loading</h1></>
-    }
+   
+useEffect(() => {
+  fetch(`http://localhost:5000/car-details?email=${user?.email}`)
+  .then(res => res.json())
+  .then(data => {
+
+    setCars(data)
+  })
+ 
+}, [res])
+
+
+  const handleCarDelete = (id) => {
+    axios(`http://localhost:5000/add-a-car/${id}`, {
+      method: "DELETE"
+    })
+    .then((data) => {
+      setRes(!res);
+      toast.success(`Successfully deleted the Car`);
+      console.log(data);
+    });
+  }
+
+  
+
+
+// if(status === 'loading') {
+//   return <><h1 className="text-3xl font-semibold">Loading</h1></>
+// }
+
 
   return (
     <div className='lg:px-24 px-4 py-8'>
@@ -43,7 +73,7 @@ const MyPorduct = () => {
               </div>
 
               <div className="card-actions justify-end">
-      <button className="btn btn-error">Buy Now</button>
+      <button onClick={() => handleCarDelete(car._id)} className="btn btn-error">Delete</button>
       <button className="btn btn-primary">Boots Now</button>
     </div>
               
