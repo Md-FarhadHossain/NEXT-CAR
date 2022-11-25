@@ -65,19 +65,17 @@ const AddAProduct = () => {
     console.log(data);
     console.log(result);
 
-    const postRes = await fetch(`http://localhost:5000/add-a-car`, {
-      method: "POST",
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(data),
-    });
-    const postData = await postRes.json();
-    console.log(postData)
+    // const postRes = await fetch(`http://localhost:5000/add-a-car`, {
+    //   method: "POST",
+    //   headers: {
+    //     'content-type': 'application/json'
+    //   },
+    //   body: JSON.stringify(data),
+    // });
+    // const postData = await postRes.json();
+    // console.log(postData)
 
-    if(postData.acknowledged){
-
-      const postCar = await fetch(`http://localhost:5000/category-car`, {
+    const postCar = await fetch(`http://localhost:5000/category-car`, {
       method: "POST",
       headers: {
         'content-type': 'application/json'
@@ -89,7 +87,6 @@ const AddAProduct = () => {
 
       toast.success('Car Added Successfully!')
       navigation('/dashbord/my-product')
-    }
 
   };
 
