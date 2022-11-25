@@ -26,7 +26,7 @@ const AddAProduct = () => {
     originalPrice: yup.number().positive().required(),
     resalePrice: yup.number().positive().required(),
     yearsOfUse: yup.number(),
-    productCategory: yup.string().required(),
+    brand: yup.string().required(),
     conditionType: yup.string().required(),
     mobileNumber: yup.number().required(),
     location: yup.string().required(),
@@ -74,7 +74,19 @@ const AddAProduct = () => {
     });
     const postData = await postRes.json();
     console.log(postData)
+
     if(postData.acknowledged){
+
+      const postCar = await fetch(`http://localhost:5000/category-car`, {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(data),
+    });
+    const postCarData = await postCar.json();
+    console.log(postCarData)
+
       toast.success('Car Added Successfully!')
       navigation('/dashbord/my-product')
     }
@@ -147,9 +159,9 @@ const AddAProduct = () => {
         {/* Product Category */}
         <div className="form-control">
           <select
-            {...register("productCategory")}
+            {...register("brand")}
             className={`select select-bordered w-full ${
-              errors.productCategory ? "select-error" : "select-bordered"
+              errors.brand ? "select-error" : "select-bordered"
             }`}
           >
             <option key="1" disabled defaultValue="Car Brand Name">
