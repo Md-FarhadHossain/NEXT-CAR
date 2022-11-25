@@ -1,4 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, Outlet } from "react-router-dom";
@@ -10,19 +12,12 @@ const Dashbord = () => {
   const [userData, setUserData] = useState({});
   const { user} = useContext(UserContext);
 
-  // const schema = yup.object().shape({
-  //   name: yup.string().required(),
-  //   email: yup.string().email().required(),
-  //   password: yup.string().min(6).required(),
-  //   confirmPassword: yup
-  //     .string()
-  //     .oneOf([yup.ref("password"), null])
-  //     .required(schema),
-  // });
 
-  // const {register, handleSubmit} = useForm({
-  //   resolver: yupResolver()
-  // })
+    
+  
+ 
+
+  
 
   useEffect(() => {
     fetch(`http://localhost:5000/user-details?email=${user?.email}`)
@@ -33,7 +28,7 @@ const Dashbord = () => {
       });
   }, [user]);
 
-  const accoutType = userData[0]?.accoutType;
+  const accoutType = userData[0]?.accountType;
   return (
     <div>
       <Navbar />
@@ -79,10 +74,10 @@ const Dashbord = () => {
             {accoutType === "Admin" ? (
               <>
                 <li>
-                  <Link to="/blog">All Sellers</Link>
+                  <Link to="all-sellers">All Sellers</Link>
                 </li>
                 <li>
-                  <Link to="/blog">All Buyers</Link>
+                  <Link to="all-buyers">All Buyers</Link>
                 </li>
               </>
             ) : (

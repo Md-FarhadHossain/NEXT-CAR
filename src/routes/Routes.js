@@ -12,6 +12,8 @@ import Dashbord from '../pages/DashbordLayout/Dashbord/Dashbord'
 import DashbordData from '../pages/DashbordLayout/DashbordData/DashbordData'
 import AddAProduct from '../pages/DashbordLayout/AddAProduct/AddAProduct'
 import MyPorduct from '../pages/DashbordLayout/MyPorduct/MyPorduct'
+import AllSellers from '../pages/DashbordLayout/AllSellers/AllSellers'
+import AllBuyers from '../pages/DashbordLayout/AllBuyers/AllBuyers'
 
 const Routes = () => {
     const router = createBrowserRouter([
@@ -57,7 +59,15 @@ const Routes = () => {
                 {
                     path: 'my-product',
                     element: <MyPorduct />
-                }
+                },
+                {
+                    path: 'all-sellers',
+                    element: <AllSellers />
+                },
+                {
+                    path: 'all-buyers',
+                    element: <AllBuyers />
+                },
             ]
         }
     ])
