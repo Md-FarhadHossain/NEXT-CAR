@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import Category from '../../CategoryPage/Category/Category'
 import AdvertisedItems from '../AdvertisedItems/AdvertisedItems'
 import HeroSection from '../HeroSection/HeroSection'
+import Overview from '../Overview/Overview'
 
 
 const Home = () => {
@@ -25,6 +26,7 @@ const Home = () => {
         <HeroSection />
        {advertises.length > 0 ?  <AdvertisedItems advertises={advertises} /> : ''}
         <Category />
+        <Overview />
     </div>
   )
 }
