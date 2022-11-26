@@ -4,6 +4,9 @@ const AdvertisedItems = ({advertises}) => {
   console.log(advertises)
   return (
     <div className='container mx-auto px-4 lg:px-0 py-16'>
+
+      <h1 className="text-3xl text-center font-semibold pb-8">Advertised items</h1>
+
       <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8'>
       {advertises?.map((advertise) => (
           <div
