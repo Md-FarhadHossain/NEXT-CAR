@@ -39,6 +39,27 @@ const MyPorduct = () => {
       console.log(data);
     });
   };
+  
+  const handleCarBoots = (id) => {
+
+    const advertise = {
+     advertise: 'advertise'
+    }
+    console.log(advertise)
+
+    axios(`http://localhost:5000/category-car/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify(advertise)
+    })
+    .then(data => {
+      console.log(data)
+      toast.success('successfully advertise your car')
+    })
+  }
 
   // if(status === 'loading') {
   //   return <><h1 className="text-3xl font-semibold">Loading</h1></>
@@ -83,7 +104,7 @@ const MyPorduct = () => {
                 >
                   Delete
                 </button>
-                <button className="btn btn-primary">Boots Now</button>
+                <button onClick={() => handleCarBoots(car._id)} className="btn btn-primary">Boots Now</button>
               </div>
             </div>
           </div>

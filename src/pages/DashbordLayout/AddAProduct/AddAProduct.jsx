@@ -1,5 +1,6 @@
 import { async } from "@firebase/util";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
@@ -11,6 +12,8 @@ import { UserContext } from "../../../context/AuthContext";
 
 const AddAProduct = () => {
   const [categories, setCategories] = useState([]);
+  const [sellerStatus, setSellerStatus] = useState([])
+  const [loading, setLoading] = useState(false)
   const { user } = useContext(UserContext);
   const navigation = useNavigate()
 
@@ -20,6 +23,20 @@ const AddAProduct = () => {
       setCategories(data.data);
     });
   }, []);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user-details?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setSellerStatus(data);
+        console.log(data);
+      });
+  }, [user?.email]);
+console.log(sellerStatus[0]?.status)
+
 
   const time = () => {
     const currentDate = new Date()
@@ -30,7 +47,7 @@ const AddAProduct = () => {
       let amPm = 'AM'
       if (hour > 12){
         hour -= 12;
-        amPm.innerText = 'PM'
+        amPm = 'PM'
     }
       const minute = currentDate.getMinutes()
       const result = `${year}-${month}-${date} /  ${hour}:${minute} ${amPm}`
@@ -65,7 +82,10 @@ const AddAProduct = () => {
   const onSumbit = async (data) => {
     data.email = user?.email;
     data.sellerName = user?.displayName;
+    data.status = sellerStatus[0]?.status;
+    data.advertise = 'no'
     // data.image = data.image[0]
+    setLoading(true)
 
     console.log(data.createdOn);
     const formData = new FormData();
@@ -76,7 +96,7 @@ const AddAProduct = () => {
     const imagRes = await fetch(`https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGBB_KEY}`, {
       method: "POST",
       body: formData,
-    });
+    })
     const result = await imagRes.json();
 
     data.image = result?.data?.url;
@@ -234,7 +254,7 @@ const AddAProduct = () => {
         </div>
 
         <div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className={`btn btn-primary ${loading ? 'loading' : ''}`}>
             Submit
           </button>
         </div>

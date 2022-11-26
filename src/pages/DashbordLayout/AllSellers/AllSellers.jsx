@@ -46,6 +46,7 @@ const AllSellers = () => {
         status: 'verified'
     }
 
+
     fetch(`http://localhost:5000/user-details/${seller?._id}`, {
         method: "PATCH",
         headers: {
@@ -56,6 +57,16 @@ const AllSellers = () => {
     })
     .then(res => res.json())
     .then(data => {
+
+        fetch(`http://localhost:5000/user-details/${seller?.email}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify('verified')
+        })
+
         console.log(data)
         toast.success(`${seller.name} is verified now!`)
         setResponce(!responce)
@@ -114,9 +125,9 @@ const AllSellers = () => {
                 <th>
                   <button
                     onClick={() => handleUpdate(seller)}
-                    className={`btn ${seller.status ? 'btn-success' : 'bg-cyan-400'} text-white btn-xs`}
+                    className={`btn ${seller.status === 'unverified' ? 'bg-cyan-400': 'btn-success'  } text-white btn-xs`}
                   >
-                    {seller.status ? 'verified' : 'verify'} 
+                    {seller.status === 'unverified' ?  'verify': 'verified' } 
                   </button>
                 </th>
               </tr>

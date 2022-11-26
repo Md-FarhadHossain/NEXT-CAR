@@ -9,7 +9,7 @@ import { UserContext } from "../../../context/AuthContext";
 
 
 const Dashbord = () => {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState([]);
   const { user} = useContext(UserContext);
 
  
@@ -30,6 +30,7 @@ const Dashbord = () => {
   }, [user?.email]);
 
   const accoutType = userData[0]?.accountType;
+ 
   return (
     <div>
       <Navbar />
