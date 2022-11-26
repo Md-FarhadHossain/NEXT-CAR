@@ -4,12 +4,12 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { UserContext } from "../../context/AuthContext";
-import  { AccountType } from "../../context/UserAccoutContext";
+import { AccountType } from "../../context/UserAccoutContext";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const { signup, updateUser, googleSignin, signout } = useContext(UserContext);
-  const {userDataInsert} = useContext(AccountType)
+  const { userDataInsert } = useContext(AccountType);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -35,6 +35,7 @@ const Signup = () => {
   //   Sign up
   const onSubmit = (data) => {
     console.log(data);
+    data.status = 'unverified'
 
     // Sign up with email and password
     signup(data.email, data.password)
@@ -44,42 +45,36 @@ const Signup = () => {
         };
 
         updateUser(userInfo)
-          .then(() => {
-
-           
-
-          })
+          .then(() => {})
           .catch((error) => console.log(error));
 
-          const user = result.user;
-          const currentUser = {
-            email: user.email,
-          };
+        const user = result.user;
+        const currentUser = {
+          email: user.email,
+        };
 
-          
-          // Jwt Authentication
-          fetch("http://localhost:5000/jwt", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(currentUser),
+        // Jwt Authentication
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => {
+            if (res.status === 401 || res.status === 403) {
+              return signout();
+            }
+            return res.json();
           })
-            .then((res) => {
-              if (res.status === 401 || res.status === 403) {
-                return signout();
-              }
-              return res.json();
-            })
-            .then((data) => {
-              console.log(data);
-              // set the value in local storage
-              localStorage.setItem("token", data.token);
-              navigate(from, { replace: true });
-            })
-        
-            .catch((err) => console.log(err));
+          .then((data) => {
+            console.log(data);
+            // set the value in local storage
+            localStorage.setItem("token", data.token);
+            navigate(from, { replace: true });
+          })
 
+          .catch((err) => console.log(err));
 
         console.log(result);
         toast.success("Sign up successfully!");
@@ -88,12 +83,11 @@ const Signup = () => {
         toast.error(error.message);
       });
 
-      userDataInsert(data)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-      })
-      
+    userDataInsert(data)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   // Sign up with google
@@ -178,7 +172,10 @@ const Signup = () => {
                   <span className="label-text">Accout Type</span>
                 </label>
 
-                <select {...register("accountType")} className="select select-bordered w-full">
+                <select
+                  {...register("accountType")}
+                  className="select select-bordered w-full"
+                >
                   <option selected>Buyer</option>
                   <option>Seller</option>
                 </select>

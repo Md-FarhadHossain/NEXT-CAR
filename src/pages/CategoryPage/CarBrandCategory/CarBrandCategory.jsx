@@ -39,7 +39,7 @@ const CarBrandCategory = () => {
                 <h3 className="text-lg">Years Of Use: {car.yearsOfUse}</h3>
                 <h3 className="text-lg">Location: {car.location}</h3>
                 <h3 className="text-lg">Posted: {car.createdOn}</h3>
-                <h3 className="text-lg flex">Seller Name:{' '} <span className="flex items-center ml-2"> {car.sellerName} {car.sellerStatus === 'verified' ? <><img className="w-6 ml-2" src="https://cdn-icons-png.flaticon.com/512/4314/4314696.png" alt="" /></>: ''}</span></h3>
+                <h3 className="text-lg flex">Seller Name:{' '} <span className="flex items-center ml-2"> {car.sellerName} {car.status === 'verified' ? <><img className="w-6 ml-2" src="https://cdn-icons-png.flaticon.com/512/4314/4314696.png" alt="" /></>: ''}</span></h3>
               </div>
               <div className="card-actions justify-end">
                 {/* The button to open modal */}

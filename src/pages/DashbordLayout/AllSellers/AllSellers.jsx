@@ -40,6 +40,27 @@ const AllSellers = () => {
     })
 
   }
+  const handleUpdate = seller => {
+
+    const body = {
+        status: 'verified'
+    }
+
+    fetch(`http://localhost:5000/user-details/${seller?._id}`, {
+        method: "PATCH",
+        headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(body)
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        toast.success(`${seller.name} is verified now!`)
+        setResponce(!responce)
+    })
+  }
 
   console.log(sellers);
   return (
@@ -92,10 +113,10 @@ const AllSellers = () => {
                 </th>
                 <th>
                   <button
-                    onClick={() => handleDelete(seller._id)}
-                    className="btn bg-cyan-400 text-white btn-xs"
+                    onClick={() => handleUpdate(seller)}
+                    className={`btn ${seller.status ? 'btn-success' : 'bg-cyan-400'} text-white btn-xs`}
                   >
-                    verify 
+                    {seller.status ? 'verified' : 'verify'} 
                   </button>
                 </th>
               </tr>
