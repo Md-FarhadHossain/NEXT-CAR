@@ -31,8 +31,8 @@ const AuthContext = ({ children }) => {
 
   // signin/sign up with gogole pop up
   const googleSignin = () => {
-    return signInWithPopup(auth, provider)
-  }
+    return signInWithPopup(auth, provider);
+  };
 
   // Update user
   const updateUser = (userInfo) => {
@@ -53,7 +53,15 @@ const AuthContext = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const authValue = { signup, login, user, logout, updateUser,googleSignin };
+  const authValue = {
+    signup,
+    login,
+    user,
+    logout,
+    updateUser,
+    googleSignin,
+    loading,
+  };
   return (
     <UserContext.Provider value={authValue}>{children}</UserContext.Provider>
   );

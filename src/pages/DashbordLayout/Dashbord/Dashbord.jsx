@@ -12,21 +12,22 @@ const Dashbord = () => {
   const [userData, setUserData] = useState({});
   const { user} = useContext(UserContext);
 
-
-    
-  
  
 
   
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user-details?email=${user?.email}`)
+    fetch(`http://localhost:5000/user-details?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         setUserData(data);
         console.log(data);
       });
-  }, [user]);
+  }, [user?.email]);
 
   const accoutType = userData[0]?.accountType;
   return (

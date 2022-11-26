@@ -16,7 +16,11 @@ const MyPorduct = () => {
   // const cars = allcarsDetails?.data
 
   useEffect(() => {
-    fetch(`http://localhost:5000/category-car?email=${user?.email}`)
+    fetch(`http://localhost:5000/category-car?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         setCars(data);
@@ -26,6 +30,9 @@ const MyPorduct = () => {
   const handleCarDelete = (id) => {
     axios(`http://localhost:5000/category-car/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
     }).then((data) => {
       setRes(!res);
       toast.success(`Successfully deleted the Car`);
@@ -65,6 +72,7 @@ const MyPorduct = () => {
                 </h3>
                 <h3 className="text-lg">Resale Price: ${car.resalePrice}</h3>
                 <h3 className="text-lg">Years Of Use: {car.yearsOfUse}</h3>
+                <h3 className="text-lg">Posted: {car.createdOn}</h3>
                 <h3 className="text-lg">Seller Name: {car.sellerName}</h3>
               </div>
 

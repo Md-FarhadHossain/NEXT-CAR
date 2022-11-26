@@ -21,6 +21,22 @@ const AddAProduct = () => {
     });
   }, []);
 
+  const time = () => {
+    const currentDate = new Date()
+      const year = currentDate.getFullYear()
+      const month = currentDate.getMonth()
+      const date = currentDate.getDate()
+      let hour = currentDate.getHours()
+      let amPm = 'AM'
+      if (hour > 12){
+        hour -= 12;
+        amPm.innerText = 'PM'
+    }
+      const minute = currentDate.getMinutes()
+      const result = `${year}-${month}-${date} /  ${hour}:${minute} ${amPm}`
+      return result
+  }
+
   const schema = yup.object().shape({
     carName: yup.string().required(),
     originalPrice: yup.number().positive().required(),
@@ -31,8 +47,10 @@ const AddAProduct = () => {
     mobileNumber: yup.number().required(),
     location: yup.string().required(),
     // image: yup.string().required(),
-    createdOn: yup.date().default(function () {
-      return new Date();
+    createdOn: yup.string().default(function () {
+      
+
+      return time();
     }),
   });
 

@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
 
 const AllBuyers = () => {
-    const [sellers, setSellers] = useState([])
+    const [buyers, setBuyer] = useState([])
 
 useEffect(() => {
-    fetch(`http://localhost:5000/user-details?accountType=Buyer`)
+    fetch(`http://localhost:5000/user-details?accountType=Buyer`, {
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+    })
     .then(res => res.json())
     .then(data => {
         console.log(data) 
-        setSellers(data)
+        setBuyer(data)
         
     })
 
@@ -26,14 +30,14 @@ useEffect(() => {
       <tr>
         <th>No. </th>
         <th>Name</th>
-        <th>Job</th>
+        <th>Email</th>
         <th>Action</th>
         
       </tr>
     </thead>
     <tbody>
      
-        {sellers.map((seller, i) =>  <tr key={seller._id}>
+        {buyers.map((buyer, i) =>  <tr key={buyer._id}>
         <th>
           {i + 1}
         </th>
@@ -45,15 +49,13 @@ useEffect(() => {
               </div>
             </div>
             <div>
-              <div className="font-bold">{seller.name}</div>
-              <div className="text-sm opacity-50">United States</div>
+              <div className="font-bold">{buyer.name}</div>
             </div>
           </div>
         </td>
         <td>
-          Zemlak, Daniel and Leannon
+          {buyer.email}
           <br/>
-          <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
         </td>
         
         <th>

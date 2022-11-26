@@ -14,6 +14,7 @@ import AddAProduct from '../pages/DashbordLayout/AddAProduct/AddAProduct'
 import MyPorduct from '../pages/DashbordLayout/MyPorduct/MyPorduct'
 import AllSellers from '../pages/DashbordLayout/AllSellers/AllSellers'
 import AllBuyers from '../pages/DashbordLayout/AllBuyers/AllBuyers'
+import PrivetRoute from './PrivetRoute'
 
 const Routes = () => {
     const router = createBrowserRouter([
@@ -39,14 +40,18 @@ const Routes = () => {
                 },
                 {
                     path: '/category/:id',
-                    element: <CarBrandCategory />,
-                    loader: async ({params}) => axios(`http://localhost:5000/category-car?brand=${params.id}`)
+                    element: <PrivetRoute><CarBrandCategory /></PrivetRoute>,
+                    loader: async ({params}) => axios(`http://localhost:5000/category-car?brand=${params.id}`, {
+                        headers: {
+                            authorization: `Bearer ${localStorage.getItem('token')}`
+                        }
+                    })
                 }
             ]
         },
         {
             path: '/dashbord',
-            element: <Dashbord />,
+            element: <PrivetRoute><Dashbord /></PrivetRoute>,
             children: [
                 {
                     path: '/dashbord',
