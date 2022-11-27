@@ -10,6 +10,7 @@ import { UserContext } from "../../../context/AuthContext";
 
 const Dashbord = () => {
   const [userData, setUserData] = useState([]);
+  const [loading, setLoading] = useState(false)
   const { user} = useContext(UserContext);
 
  
@@ -26,6 +27,7 @@ const Dashbord = () => {
       .then((data) => {
         setUserData(data);
         console.log(data);
+        setLoading(!loading)
       });
   }, [user?.email]);
 
@@ -47,7 +49,7 @@ const Dashbord = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="dashbord-sidebar" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+          {loading ? <><ul className="menu p-4 w-80 bg-base-100 text-base-content">
             {/* <!-- Sidebar content here --> */}
             {accoutType === "Seller" ? (
               <>
@@ -85,7 +87,7 @@ const Dashbord = () => {
             ) : (
               ""
             )}
-          </ul>
+          </ul></> : <><ul className="menu flex items-center p-4 w-80 bg-base-100 text-base-content"><button className="btn btn-square loading"></button></ul></>}
         </div>
       </div>
     </div>

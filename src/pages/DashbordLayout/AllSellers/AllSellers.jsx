@@ -40,7 +40,7 @@ const AllSellers = () => {
     })
 
   }
-  const handleUpdate = seller => {
+  const handleVerify = seller => {
 
     const body = {
         status: 'verified'
@@ -124,7 +124,7 @@ const AllSellers = () => {
                 </th>
                 <th>
                   <button
-                    onClick={() => handleUpdate(seller)}
+                    onClick={() => handleVerify(seller)}
                     className={`btn ${seller.status === 'unverified' ? 'bg-cyan-400': 'btn-success'  } text-white btn-xs`}
                   >
                     {seller.status === 'unverified' ?  'verify': 'verified' } 

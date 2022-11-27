@@ -9,6 +9,7 @@ const HeroSection = () => {
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
+      backgroundAttachment: 'fixed'
     }}>
       <div className="hero relative h-[90vh] bg-[#000000e6]">
         <div className="hero-content">
