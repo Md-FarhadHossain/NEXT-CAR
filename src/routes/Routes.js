@@ -15,6 +15,8 @@ import MyPorduct from '../pages/DashbordLayout/MyPorduct/MyPorduct'
 import AllSellers from '../pages/DashbordLayout/AllSellers/AllSellers'
 import AllBuyers from '../pages/DashbordLayout/AllBuyers/AllBuyers'
 import PrivetRoute from './PrivetRoute'
+import WishList from '../pages/DashbordLayout/WishList/WishList'
+import Payment from '../pages/DashbordLayout/Payment/Payment'
 
 const Routes = () => {
     const router = createBrowserRouter([
@@ -72,6 +74,15 @@ const Routes = () => {
                 {
                     path: 'all-buyers',
                     element: <AllBuyers />
+                },
+                {
+                    path: 'my-wishlist',
+                    element: <WishList />
+                },
+                {
+                    path: 'payment/:id',
+                    element: <Payment />,
+                    loader: async ({params}) => await fetch(`http://localhost:5000/category-car?wishList=true/${params.id}`)
                 },
             ]
         }

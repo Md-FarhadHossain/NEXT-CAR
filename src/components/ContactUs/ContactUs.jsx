@@ -47,7 +47,7 @@ const ContactUs = () => {
           <textarea className="textarea textarea-accent w-full h-48 " placeholder="Your message"></textarea>
           </div>
 
-          <button className="btn btn-primary text-white bg-gradient-to-r from-secondary to-primary">Submit</button>
+          <button className="btn btn-primary text-white bg-gradient-to-r from-secondary to-primary">Send</button>
         </div>
       </div>
        </div>

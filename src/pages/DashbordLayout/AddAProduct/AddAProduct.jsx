@@ -84,6 +84,7 @@ console.log(sellerStatus[0]?.status)
     data.sellerName = user?.displayName;
     data.status = sellerStatus[0]?.status;
     data.advertise = 'no'
+    data.wishList = 'false'
     // data.image = data.image[0]
     setLoading(true)
 

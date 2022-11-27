@@ -47,7 +47,7 @@ const MyPorduct = () => {
     }
     console.log(advertise)
 
-    axios(`http://localhost:5000/category-car/${id}`, {
+    fetch(`http://localhost:5000/category-car/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -55,6 +55,7 @@ const MyPorduct = () => {
       },
       body: JSON.stringify(advertise)
     })
+    .then(res => res.json())
     .then(data => {
       console.log(data)
       toast.success('successfully advertise your car')

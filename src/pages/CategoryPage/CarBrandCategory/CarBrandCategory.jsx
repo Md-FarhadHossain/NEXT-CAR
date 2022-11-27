@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import { UserContext } from "../../../context/AuthContext";
 import CategoryCarModal from "../CategoryCarModal/CategoryCarModal";
+import { AiOutlineHeart,AiFillHeart } from "react-icons/ai";
+
 
 const CarBrandCategory = () => {
+  const [wish, setWish] = useState(false)
   const carData = useLoaderData();
   const { user } = useContext(UserContext);
   const cars = carData?.data;
@@ -13,6 +16,27 @@ const CarBrandCategory = () => {
   const handleOrderSubmit = () => {
     toast.success("Car is booked");
   };
+  const handleWish = (car) => {
+    setWish(!wish)
+    console.log(car._id)
+    const wishList = {
+      wishList: 'true'
+    }
+    
+    fetch(`http://localhost:5000/category-car/${car?._id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify(wishList)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      toast.success('successfully advertise your car')
+    })
+  }
 
   return (
     <div className="container mx-auto">
@@ -30,7 +54,7 @@ const CarBrandCategory = () => {
               />
             </figure>
             <div className="card-body">
-              <h2 className="card-title">{car.carName}</h2>
+              <h2 className="card-title flex justify-between">{car.carName} <span onClick={() => handleWish(car)} className="cursor-pointer hover:text-pink-600 w-8 h-8 rounded-full flex justify-center items-center hover:bg-pink-100"> {wish ? <AiFillHeart /> : <AiOutlineHeart />}</span></h2>
               <div>
                 <h3 className="text-lg">
                   Original Price: ${car.originalPrice}

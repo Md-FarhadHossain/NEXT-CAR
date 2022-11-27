@@ -20,7 +20,7 @@ const HeroSection = () => {
               Choose Your Favourite Car
             </h1>
             <p className="py-6 text-2xl">
-              Buy and sell any cars and with exclusive prive find in your area.
+              Buy and sell any cars and with exclusive price find in your area.
             </p>
             <button className="btn btn-primary">Get Started</button>
           </div>
