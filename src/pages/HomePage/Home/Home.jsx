@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import ContactUs from '../../../components/ContactUs/ContactUs'
 import Category from '../../CategoryPage/Category/Category'
 import AdvertisedItems from '../AdvertisedItems/AdvertisedItems'
 import HeroSection from '../HeroSection/HeroSection'
@@ -27,6 +28,7 @@ const Home = () => {
        {advertises.length > 0 ?  <AdvertisedItems advertises={advertises} /> : ''}
         <Category />
         <Overview />
+        <ContactUs />
     </div>
   )
 }

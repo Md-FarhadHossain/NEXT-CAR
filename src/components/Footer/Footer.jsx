@@ -4,8 +4,8 @@ import logo from '../../assets/logo.png'
 
 const Footer = () => {
   return (
-    <footer className="bg-black ">
-    <div className="container mx-auto text-white footer py-20  flex flex-wrap justify-center lg:justify-between ">
+    <footer className="bg-[#131313] ">
+    <div className="container mx-auto text-white footer py-24  flex flex-wrap justify-center lg:justify-between ">
       <div className="flex items-center">
         <img className="w-[4rem]" src={logo} alt="" />
         <div>

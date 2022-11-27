@@ -26,7 +26,8 @@ const Overview = () => {
   return (
 
 
-    <div className="container mx-auto px-4 lg:px-0 py-16">
+    <div className="relative">
+        <div className="container mx-auto px-4 lg:px-0 py-16">
       <div>
         <h1 className="text-3xl text-center font-semibold pb-8">
           OVER 6 YEARS WE SELL USED CARS
@@ -43,7 +44,10 @@ const Overview = () => {
             }
         </div>
 
+
       </div>
+    </div>
+       
     </div>
   );
 };

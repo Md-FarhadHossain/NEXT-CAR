@@ -27,12 +27,12 @@ const AdvertisedItems = ({advertises}) => {
               <h2 className="card-title">{advertise.carName}</h2>
               <div>
                 <h3 className="text-lg">
-                  Original Price: ${advertise.originalPrice}
+                  Original Price: <span className="font-semibold">${advertise.originalPrice}</span>
                 </h3>
-                <h3 className="text-lg">Resale Price: ${advertise.resalePrice}</h3>
-                <h3 className="text-lg">Years Of Use: {advertise.yearsOfUse}</h3>
-                <h3 className="text-lg">Posted: {advertise.createdOn}</h3>
-                <h3 className="text-lg">Seller Name: {advertise.sellerName}</h3>
+                <h3 className="text-lg">Resale Price: <span className="font-semibold">${advertise.resalePrice}</span></h3>
+                <h3 className="text-lg">Years Of Use: <span className="font-semibold">{advertise.yearsOfUse}</span></h3>
+                <h3 className="text-lg">Posted: <span className="font-semibold">{advertise.createdOn}</span></h3>
+                <h3 className="text-lg flex">Seller Name: {' '} <span className="flex font-semibold items-center ml-2"> {advertise.sellerName} {advertise.status === 'verified' ? <><img className="w-4 ml-1" src="https://cdn-icons-png.flaticon.com/512/6364/6364343.png" alt="" /></>: ''}</span></h3>
               </div>
 
             

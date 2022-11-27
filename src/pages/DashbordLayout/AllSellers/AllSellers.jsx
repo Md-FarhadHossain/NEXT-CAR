@@ -58,18 +58,21 @@ const AllSellers = () => {
     .then(res => res.json())
     .then(data => {
 
-        fetch(`http://localhost:5000/user-details/${seller?.email}`, {
+        fetch(`http://localhost:5000/category-car?email=${seller?.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('token')}`
             },
-            body: JSON.stringify('verified')
+            body: JSON.stringify(body)
         })
-
-        console.log(data)
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+        })
         toast.success(`${seller.name} is verified now!`)
         setResponce(!responce)
+        console.log(data)
     })
   }
 
@@ -127,7 +130,7 @@ const AllSellers = () => {
                     onClick={() => handleVerify(seller)}
                     className={`btn ${seller.status === 'unverified' ? 'bg-cyan-400': 'btn-success'  } text-white btn-xs`}
                   >
-                    {seller.status === 'unverified' ?  'verify': 'verified' } 
+                    {seller.status === 'unverified' ?  'unverified': 'verified' } 
                   </button>
                 </th>
               </tr>
