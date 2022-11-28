@@ -7,7 +7,7 @@ const DashbordData = () => {
     const {user,logout} = useContext(UserContext)
   const [userData, setUserData] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/user-details?email=${user?.email}`)
+    fetch(`https://next-car-inky.vercel.app/user-details?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setUserData(data);

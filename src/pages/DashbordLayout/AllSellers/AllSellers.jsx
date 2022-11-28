@@ -12,7 +12,7 @@ const AllSellers = () => {
   const [responce, setResponce] = useState(true)
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user-details?accountType=Seller`, {
+    fetch(`https://next-car-inky.vercel.app/user-details?accountType=Seller`, {
         headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`
           }
@@ -26,7 +26,7 @@ const AllSellers = () => {
 
 
   const handleDelete = id => {
-    fetch(`http://localhost:5000/user-details/${id}`, {
+    fetch(`https://next-car-inky.vercel.app/user-details/${id}`, {
         method: 'DELETE',
         headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`
@@ -47,7 +47,7 @@ const AllSellers = () => {
     }
 
 
-    fetch(`http://localhost:5000/user-details/${seller?._id}`, {
+    fetch(`https://next-car-inky.vercel.app/user-details/${seller?._id}`, {
         method: "PATCH",
         headers: {
             'content-type': 'application/json',
@@ -58,7 +58,7 @@ const AllSellers = () => {
     .then(res => res.json())
     .then(data => {
 
-        fetch(`http://localhost:5000/category-car?email=${seller?.email}`, {
+        fetch(`https://next-car-inky.vercel.app/category-car?email=${seller?.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

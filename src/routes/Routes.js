@@ -18,6 +18,7 @@ import PrivetRoute from './PrivetRoute'
 import WishList from '../pages/DashbordLayout/WishList/WishList'
 import Payment from '../pages/DashbordLayout/Payment/Payment'
 import MyOrders from '../pages/DashbordLayout/MyOrders/MyOrders'
+import ReportAdmin from '../pages/DashbordLayout/ReportAdmin/ReportAdmin'
 
 const Routes = () => {
     const router = createBrowserRouter([
@@ -44,7 +45,7 @@ const Routes = () => {
                 {
                     path: '/category/:id',
                     element: <PrivetRoute><CarBrandCategory /></PrivetRoute>,
-                    loader: async ({params}) => axios(`http://localhost:5000/category-car?brand=${params.id}`, {
+                    loader: async ({params}) => axios(`https://next-car-inky.vercel.app/category-car?brand=${params.id}`, {
                         headers: {
                             authorization: `Bearer ${localStorage.getItem('token')}`
                         }
@@ -83,11 +84,15 @@ const Routes = () => {
                 {
                     path: 'payment/:id',
                     element: <Payment />,
-                    loader: async ({params}) => await fetch(`http://localhost:5000/category-car/${params.id}`)
+                    loader: async ({params}) => await fetch(`https://next-car-inky.vercel.app/category-car/${params.id}`)
                 },
                 {
                     path: 'my-orders',
                     element: <MyOrders />
+                },
+                {
+                    path: 'report-admin',
+                    element: <ReportAdmin />
                 }
             ]
         }

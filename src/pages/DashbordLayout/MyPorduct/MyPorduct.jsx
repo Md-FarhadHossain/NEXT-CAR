@@ -11,12 +11,12 @@ const MyPorduct = () => {
 
   // const {data:allcarsDetails = [], status, refetch} = useQuery({
   //     queryKey: ['email',user?.email],
-  //     queryFn: async () => await axios(`http://localhost:5000/car-details?email=${user?.email}`)
+  //     queryFn: async () => await axios(`https://next-car-inky.vercel.app/car-details?email=${user?.email}`)
   // })
   // const cars = allcarsDetails?.data
 
   useEffect(() => {
-    fetch(`http://localhost:5000/category-car?email=${user?.email}`, {
+    fetch(`https://next-car-inky.vercel.app/category-car?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -28,7 +28,7 @@ const MyPorduct = () => {
   }, [res]);
 
   const handleCarDelete = (id) => {
-    axios(`http://localhost:5000/category-car/${id}`, {
+    axios(`https://next-car-inky.vercel.app/category-car/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`
@@ -47,7 +47,7 @@ const MyPorduct = () => {
     }
     console.log(advertise)
 
-    fetch(`http://localhost:5000/category-car/${id}`, {
+    fetch(`https://next-car-inky.vercel.app/category-car/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

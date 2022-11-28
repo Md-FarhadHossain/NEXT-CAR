@@ -54,7 +54,7 @@ const Signup = () => {
         };
 
         // Jwt Authentication
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://next-car-inky.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",

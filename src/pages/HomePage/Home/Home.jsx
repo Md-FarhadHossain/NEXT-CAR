@@ -14,7 +14,7 @@ const Home = () => {
     queryKey: ["advertise"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/category-car?advertise=advertise`
+        `https://next-car-inky.vercel.app/category-car?advertise=advertise`
       );
       const data = await res.json();
       return data;

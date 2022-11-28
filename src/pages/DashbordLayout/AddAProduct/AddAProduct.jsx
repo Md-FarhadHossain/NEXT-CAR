@@ -17,14 +17,14 @@ const AddAProduct = () => {
   const { user } = useContext(UserContext);
   const navigation = useNavigate()
 
-  const url = "http://localhost:5000/category-brand";
+  const url = "https://next-car-inky.vercel.app/category-brand";
   useEffect(() => {
     axios(url).then((data) => {
       setCategories(data.data);
     });
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:5000/user-details?email=${user?.email}`, {
+    fetch(`https://next-car-inky.vercel.app/user-details?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -85,6 +85,8 @@ console.log(sellerStatus[0]?.status)
     data.status = sellerStatus[0]?.status;
     data.advertise = 'no'
     data.wishList = 'false'
+    data.report = 'false'
+    data.carStatus = 'available'
     // data.image = data.image[0]
     setLoading(true)
 
@@ -104,7 +106,7 @@ console.log(sellerStatus[0]?.status)
     console.log(data);
     console.log(result);
 
-    // const postRes = await fetch(`http://localhost:5000/add-a-car`, {
+    // const postRes = await fetch(`https://next-car-inky.vercel.app/add-a-car`, {
     //   method: "POST",
     //   headers: {
     //     'content-type': 'application/json'
@@ -114,7 +116,7 @@ console.log(sellerStatus[0]?.status)
     // const postData = await postRes.json();
     // console.log(postData)
 
-    const postCar = await fetch(`http://localhost:5000/category-car`, {
+    const postCar = await fetch(`https://next-car-inky.vercel.app/category-car`, {
       method: "POST",
       headers: {
         'content-type': 'application/json'

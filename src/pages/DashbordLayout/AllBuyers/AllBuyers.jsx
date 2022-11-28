@@ -4,7 +4,7 @@ const AllBuyers = () => {
     const [buyers, setBuyer] = useState([])
 
 useEffect(() => {
-    fetch(`http://localhost:5000/user-details?accountType=Buyer`, {
+    fetch(`https://next-car-inky.vercel.app/user-details?accountType=Buyer`, {
         headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`
           }

@@ -16,7 +16,7 @@ const CheckOut = ({data}) => {
 
   const elements = useElements();
   const {resalePrice,email} = data
-  // console.log(data)
+  console.log(data)
 
 
   const price = {
@@ -25,14 +25,14 @@ const CheckOut = ({data}) => {
   useEffect(() => {
     console.log(price)
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://next-car-inky.vercel.app/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json", },
       body: JSON.stringify(price),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [email]);
+  }, [resalePrice]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -72,9 +72,27 @@ const CheckOut = ({data}) => {
       return;
     }
 
+
+    const payments = {
+      paid: 'true',
+      transitionId: paymentIntent.id,
+      sold: 'true',
+      advertise: 'no',
+      carID: data._id,
+      email: user?.email,
+      
+    }
+
     if(paymentIntent.status === 'succeeded'){
       setSuccess(`congras! your payment is done`)
       setTransitionId(paymentIntent.id)
+
+      fetch('https://next-car-inky.vercel.app/payments', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(payments)
+      })
+
     }
 
   };
@@ -97,7 +115,7 @@ const CheckOut = ({data}) => {
             },
           }}
         />
-        <button className="btn btn-sm" type="submit" disabled={!stripe}>
+        <button className="btn btn-sm" type="submit" disabled={!stripe || !clientSecret}>
           Pay
         </button>
       </form>

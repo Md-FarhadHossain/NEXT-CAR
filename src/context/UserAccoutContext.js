@@ -10,7 +10,7 @@ const UserAccoutContext = ({children}) => {
     // Send User Details
 
     const userDataInsert = (data) => {
-       return fetch('http://localhost:5000/user-details', {
+       return fetch('https://next-car-inky.vercel.app/user-details', {
         method: 'POST',
         headers: {
           'content-type': 'application/json'

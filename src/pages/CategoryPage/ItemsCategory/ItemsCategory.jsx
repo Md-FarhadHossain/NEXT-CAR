@@ -9,7 +9,7 @@ const ItemsCategory = () => {
   
  
 
-  const url = "http://localhost:5000/category-brand";
+  const url = "https://next-car-inky.vercel.app/category-brand";
   useEffect(() => {
     axios(url).then((data) => {
       setCategories(data.data);
