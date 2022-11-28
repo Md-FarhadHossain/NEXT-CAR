@@ -136,12 +136,12 @@ const handleGoogleSignin = () => {
 
               <div className="divider">OR</div>
 
+            </form>
               <div className="form-control">
-              <button onClick={handleGoogleSignin} className="btn border-gray-500 no-animation hover:text-white font-semibold text-gray-600 border-2 bg-transparent">
+              <button onClick={handleGoogleSignin} className="btn mb-8 mx-8 border-gray-500 no-animation hover:text-white font-semibold text-gray-600 border-2 bg-transparent">
                   CONTINUE WITH GOOGLE
                 </button>
               </div>
-            </form>
           </div>
         </div>
       </div>

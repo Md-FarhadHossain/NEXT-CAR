@@ -202,7 +202,7 @@ const Signup = () => {
             <div className="form-control">
               <button
                 onClick={handleGoogleSignin}
-                className="btn border-gray-500 no-animation hover:text-white font-semibold text-gray-600 border-2 bg-transparent"
+                className="btn mb-8 mx-8 border-gray-500 no-animation hover:text-white font-semibold text-gray-600 border-2 bg-transparent"
               >
                 CONTINUE WITH GOOGLE
               </button>
