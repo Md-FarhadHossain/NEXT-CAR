@@ -20,8 +20,10 @@ const DashbordData = () => {
     <div>
 
     
+<div className="flex justify-center items-center h-[85vh]">
+<h1 className="text-7xl text-center font-bold">Wellcome to Dashbord</h1>
 
-
+</div>
     </div>
   );
 };

@@ -17,6 +17,7 @@ import AllBuyers from '../pages/DashbordLayout/AllBuyers/AllBuyers'
 import PrivetRoute from './PrivetRoute'
 import WishList from '../pages/DashbordLayout/WishList/WishList'
 import Payment from '../pages/DashbordLayout/Payment/Payment'
+import MyOrders from '../pages/DashbordLayout/MyOrders/MyOrders'
 
 const Routes = () => {
     const router = createBrowserRouter([
@@ -84,6 +85,10 @@ const Routes = () => {
                     element: <Payment />,
                     loader: async ({params}) => await fetch(`http://localhost:5000/category-car/${params.id}`)
                 },
+                {
+                    path: 'my-orders',
+                    element: <MyOrders />
+                }
             ]
         }
     ])

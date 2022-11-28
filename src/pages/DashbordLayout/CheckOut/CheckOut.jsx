@@ -5,6 +5,8 @@ import { UserContext } from "../../../context/AuthContext";
 
 const CheckOut = ({data}) => {
   const [clientSecret, setClientSecret] = useState("");
+  const [success, setSuccess] = useState('')
+  const [transitionId, setTransitionId] = useState('')
   const [error, setError] = useState("");
   const {user} = useContext(UserContext)
 
@@ -30,7 +32,7 @@ const CheckOut = ({data}) => {
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [price]);
+  }, [email]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -70,6 +72,10 @@ const CheckOut = ({data}) => {
       return;
     }
 
+    if(paymentIntent.status === 'succeeded'){
+      setSuccess(`congras! your payment is done`)
+      setTransitionId(paymentIntent.id)
+    }
 
   };
   return (
@@ -96,6 +102,8 @@ const CheckOut = ({data}) => {
         </button>
       </form>
       <p>{error ? error : " "}</p>
+      <p className="text-green-500 text-xl">{success}</p>
+      <p className="text-green-500 text-lg">{transitionId}</p>
     </div>
   );
 };

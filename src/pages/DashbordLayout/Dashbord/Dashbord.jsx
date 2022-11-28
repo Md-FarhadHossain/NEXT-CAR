@@ -69,7 +69,7 @@ const Dashbord = () => {
             {accoutType === "Buyer" ? (
               <>
                 <li>
-                  <Link to="/blog">My orders</Link>
+                  <Link to="my-orders">My orders</Link>
                   <Link to="my-wishlist">My WishList</Link>
                 </li>
               </>
