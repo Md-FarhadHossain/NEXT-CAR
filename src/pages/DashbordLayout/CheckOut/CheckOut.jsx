@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { UserContext } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 
 const CheckOut = ({data}) => {
@@ -8,7 +9,9 @@ const CheckOut = ({data}) => {
   const [success, setSuccess] = useState('')
   const [transitionId, setTransitionId] = useState('')
   const [error, setError] = useState("");
+  const [payResponce, setPayResponce] = useState(false)
   const {user} = useContext(UserContext)
+  const navigate = useNavigate()
 
   const stripe = useStripe();
 
@@ -89,15 +92,28 @@ const CheckOut = ({data}) => {
       setSuccess(`congras! your payment is done`)
       setTransitionId(paymentIntent.id)
 
+    
+
+
+
       fetch('https://next-car-inky.vercel.app/payments', {
         method: 'POST',
         headers: {'content-type': 'application/json'},
         body: JSON.stringify(payments)
       })
+      .then(res => res.json())
+      .then(data => {
+        navigate('/dashbord/my-orders')
+      })
 
     }
 
   };
+
+  const handlePay = () => {
+    setPayResponce(true)
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -117,7 +133,7 @@ const CheckOut = ({data}) => {
             },
           }}
         />
-        <button className="btn btn-sm" type="submit" disabled={!stripe}>
+        <button onClick={handlePay} className={`btn btn-sm ${payResponce ? 'loading' : ' '}`} type="submit" disabled={!stripe}>
           Pay
         </button>
       </form>

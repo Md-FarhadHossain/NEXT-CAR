@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { UserContext } from "../../context/AuthContext";
 import { AccountType } from "../../context/UserAccoutContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const { signup, updateUser, googleSignin, signout } = useContext(UserContext);
@@ -102,7 +102,7 @@ const Signup = () => {
 
   return (
     <div>
-      <div className="hero h-[80vh] w-full mt-16 mb-24">
+      <div className="hero h-[80vh] w-full mt-16 mb-36">
         <div className="hero-content w-full flex-col">
           <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -189,12 +189,12 @@ const Signup = () => {
                 <span className="label-text-alt mr-2">
                   All ready have an accout?
                 </span>
-                <a
-                  href="#"
+                <Link
+                  to='/login'
                   className="label-text-alt link link-hover text-secondary"
                 >
                   Login Here
-                </a>
+                </Link>
               </label>
 
               <div className="divider">OR</div>

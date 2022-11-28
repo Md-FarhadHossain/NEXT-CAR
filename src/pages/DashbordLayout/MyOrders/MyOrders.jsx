@@ -63,6 +63,8 @@ const MyOrders = () => {
   console.log(remainingCar)
   console.log(a)
 
+  console.log(orderDetails)
+
   return (
 
     <div>
@@ -73,26 +75,21 @@ const MyOrders = () => {
     <thead>
       <tr>
         <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
+         NO.
         </th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-        <th></th>
+        <th>Car Name</th>
+        <th>Your Email</th>
+        <th>Pay Info</th>
       </tr>
     </thead>
     <tbody>
       {/* <!-- row 1 --> */}
       {
-        orderDetails.map(order => {
+        orderDetails.map((order, i) => {
          
           return <tr>
           <th>
-            <label>
-              <input type="checkbox" className="checkbox" />
-            </label>
+            {i + 1}
           </th>
           <td>
             <div className="flex items-center space-x-3">
@@ -102,17 +99,17 @@ const MyOrders = () => {
                 </div>
               </div>
               <div>
-                <div className="font-bold">Hart Hagerty</div>
-                <div className="text-sm opacity-50">United States</div>
+                <div className="font-bold">{order.carName}</div>
+                
               </div>
             </div>
           </td>
           <td>
-            Zemlak, Daniel and Leannon
+            {order.userEmail}
             <br/>
-            <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+           
           </td>
-          <td>Purple</td>
+         
           <th>
             <form>
             <Link  to={`/dashbord/payment/${order?._id}`} className="btn  btn-xs">{a ? 'paid': 'pay now'}</Link>
