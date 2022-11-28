@@ -13,7 +13,7 @@ const CarBrandCategory = () => {
   const carData = useLoaderData();
   const { user } = useContext(UserContext);
   const cars = carData?.data;
-  console.log(cars);
+  // console.log(cars);
 
 
   // Order submit
@@ -61,7 +61,7 @@ const CarBrandCategory = () => {
       carData,
       userEmail
     };
-    console.log(wishCar)
+    // console.log(wishCar)
 
     fetch(`https://next-car-inky.vercel.app/category-car/${car?._id}`)
       .then((res) => res.json())
@@ -98,27 +98,7 @@ const CarBrandCategory = () => {
         }
       });
 
-    //  setWishCar(carData);
 
-    // console.log(wishCar);
-
-    // const userEmail = user?.email;
-    // const wishCarData = {
-    //   wishCar,
-    //   userEmail,
-    // };
-
-    //  const wishRes =  await fetch(`https://next-car-inky.vercel.app/wishlist`, {
-    //     method: "POST",
-    //     headers: {
-    //       "content-type": "application/json",
-    //       authorization: `Bearer ${localStorage.getItem("token")}`,
-    //     },
-    //     body: JSON.stringify(wishCarData),
-    //   })
-    //     const wishData =  await wishRes.json()
-
-    // console.log(wishData);
     toast.success("successfully advertise your car");
   };
 
@@ -144,7 +124,8 @@ const CarBrandCategory = () => {
   }
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto py-8">
+      <h1 className="text-3xl py-8 mb-8 font-bold text-center">Chose a car</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-6">
         {cars?.map((car) => (
           <div

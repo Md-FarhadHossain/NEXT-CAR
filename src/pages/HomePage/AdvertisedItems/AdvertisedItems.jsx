@@ -76,8 +76,7 @@ const AdvertisedItems = ({advertises}) => {
             </figure>
             <div className="card-body">
              <div className='flex items-center justify-between'>
-             <h2 className="card-title">{advertise.carName}</h2>
-              <div className="flex items-center">
+             <h2 className="card-title flex items-center justify-between">{advertise.carName} <div className="flex items-center">
                 <span
                  
                   className="cursor-pointer hover:text-pink-600 w-8 h-8 rounded-full flex justify-center items-center hover:bg-pink-100"
@@ -85,7 +84,8 @@ const AdvertisedItems = ({advertises}) => {
                   {" "}
                    <AiOutlineHeart />
                 </span> <span onClick={() => handleReport(advertise)} className="cursor-pointer" title="Report to Admin"><CiFlag1 /></span>
-                </div>
+                </div></h2>
+              
              </div>
               <div>
                 <h3 className="text-lg">
