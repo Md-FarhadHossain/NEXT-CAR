@@ -15,8 +15,10 @@ const CheckOut = ({data}) => {
 
 
   const elements = useElements();
-  const {resalePrice,email} = data
-  console.log(data)
+ 
+  // useEffect(() => {
+
+  // },[])
 
 
   const price = {
@@ -32,7 +34,7 @@ const CheckOut = ({data}) => {
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [resalePrice]);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -61,7 +63,7 @@ const CheckOut = ({data}) => {
         payment_method: {
           card: card,
           billing_details: {
-            email: email
+            email: user?.email
           },
         },
       },
@@ -115,7 +117,7 @@ const CheckOut = ({data}) => {
             },
           }}
         />
-        <button className="btn btn-sm" type="submit" disabled={!stripe || !clientSecret}>
+        <button className="btn btn-sm" type="submit" disabled={!stripe}>
           Pay
         </button>
       </form>

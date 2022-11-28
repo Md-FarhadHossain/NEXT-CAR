@@ -2,11 +2,55 @@ import React from 'react'
 import { useContext } from 'react'
 import toast from 'react-hot-toast'
 import { UserContext } from '../../../context/AuthContext'
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { CiFlag1 } from "react-icons/ci";
 
 const AdvertisedItems = ({advertises}) => {
   const {user} = useContext(UserContext)
-  const handleOrderSubmit = () => {
-    toast.success("Car is booked");
+  const handleReport = (car) => {
+    console.log(car._id)
+
+    const report = {
+      report: 'true'
+    }
+
+    fetch(`https://next-car-md-farhadhossain.vercel.app/category-car/${car._id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(report)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      toast.success(`Repoted to admin`);
+    })
+  }
+  const handleOrderSubmit = (car) => {
+    toast.success(`Car is booked ${car?.carName}`);
+
+    const carData = {
+      image: car?.image,
+      resalePrice: car?.resalePrice,     
+      carName: car?.carName,
+      userEmail: user?.email,
+      paid: 'false'
+    }
+
+
+    fetch(`https://next-car-md-farhadhossain.vercel.app/my-order`, {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(carData)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+
   };
   console.log(advertises)
   return (
@@ -31,7 +75,18 @@ const AdvertisedItems = ({advertises}) => {
               />
             </figure>
             <div className="card-body">
-              <h2 className="card-title">{advertise.carName}</h2>
+             <div className='flex items-center justify-between'>
+             <h2 className="card-title">{advertise.carName}</h2>
+              <div className="flex items-center">
+                <span
+                 
+                  className="cursor-pointer hover:text-pink-600 w-8 h-8 rounded-full flex justify-center items-center hover:bg-pink-100"
+                >
+                  {" "}
+                   <AiOutlineHeart />
+                </span> <span onClick={() => handleReport(advertise)} className="cursor-pointer" title="Report to Admin"><CiFlag1 /></span>
+                </div>
+             </div>
               <div>
                 <h3 className="text-lg">
                   Original Price: <span className="font-semibold">${advertise.originalPrice}</span>
@@ -91,7 +146,7 @@ const AdvertisedItems = ({advertises}) => {
                         </h3>
 
                         <label
-                          onClick={handleOrderSubmit}
+                          onClick={() => handleOrderSubmit(advertise)}
                           htmlFor={advertise?._id}
                           className="btn w-full"
                         >

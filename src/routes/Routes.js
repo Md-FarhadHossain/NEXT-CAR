@@ -84,7 +84,7 @@ const Routes = () => {
                 {
                     path: 'payment/:id',
                     element: <Payment />,
-                    loader: async ({params}) => await fetch(`https://next-car-inky.vercel.app/category-car/${params.id}`)
+                    loader: async ({params}) => await fetch(`https://next-car-md-farhadhossain.vercel.app/my-order/${params.id}`)
                 },
                 {
                     path: 'my-orders',

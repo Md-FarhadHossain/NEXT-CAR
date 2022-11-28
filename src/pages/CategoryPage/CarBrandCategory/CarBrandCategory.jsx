@@ -4,7 +4,6 @@ import { useLoaderData } from "react-router-dom";
 import { UserContext } from "../../../context/AuthContext";
 import CategoryCarModal from "../CategoryCarModal/CategoryCarModal";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { async } from "@firebase/util";
 import { CiFlag1 } from "react-icons/ci";
 
 const CarBrandCategory = () => {
@@ -21,7 +20,27 @@ const CarBrandCategory = () => {
 
   const handleOrderSubmit = (car) => {
     toast.success(`Car is booked ${car?._id}`);
-    
+
+    const carData = {
+      image: car?.image,
+      resalePrice: car?.resalePrice,     
+      carName: car?.carName,
+      userEmail: user?.email,
+      paid: 'false'
+    }
+
+
+    fetch(`https://next-car-md-farhadhossain.vercel.app/my-order`, {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(carData)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
 
   };
   const handleWish = async (car) => {
@@ -105,12 +124,13 @@ const CarBrandCategory = () => {
 
   const handleReport = (car) => {
     console.log(car._id)
+    toast.success(`Repoted to admin`);
 
     const report = {
       report: 'true'
     }
 
-    fetch(`http://localhost:5000/category-car/${car._id}`, {
+    fetch(`https://next-car-md-farhadhossain.vercel.app/category-car/${car._id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',

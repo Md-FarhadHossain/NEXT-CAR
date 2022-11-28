@@ -6,7 +6,7 @@ const ReportAdmin = () => {
     const [res, setRes] = useState(true);
     const [reportCar, setReportCar] = useState([])
     useEffect(() => {
-      fetch('http://localhost:5000/category-car?report=true')
+      fetch('https://next-car-md-farhadhossain.vercel.app/category-car?report=true')
       .then(res => res.json())
       .then(data => {
         console.log(data)
