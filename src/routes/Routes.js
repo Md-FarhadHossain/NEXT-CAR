@@ -19,12 +19,14 @@ import WishList from '../pages/DashbordLayout/WishList/WishList'
 import Payment from '../pages/DashbordLayout/Payment/Payment'
 import MyOrders from '../pages/DashbordLayout/MyOrders/MyOrders'
 import ReportAdmin from '../pages/DashbordLayout/ReportAdmin/ReportAdmin'
+import ErrorPage from '../pages/ErrorPage/ErrorPage'
 
 const Routes = () => {
     const router = createBrowserRouter([
         {
             path: '/',
             element: <Main />,
+            errorElement: <ErrorPage />,
             children: [
                 {
                     path: '/',
@@ -56,6 +58,7 @@ const Routes = () => {
         {
             path: '/dashbord',
             element: <PrivetRoute><Dashbord /></PrivetRoute>,
+            errorElement: <ErrorPage />,
             children: [
                 {
                     path: '/dashbord',
