@@ -82,7 +82,7 @@ const Routes = () => {
                 {
                     path: 'payment/:id',
                     element: <Payment />,
-                    loader: async ({params}) => await fetch(`http://localhost:5000/category-car?wishList=true/${params.id}`)
+                    loader: async ({params}) => await fetch(`http://localhost:5000/category-car/${params.id}`)
                 },
             ]
         }
