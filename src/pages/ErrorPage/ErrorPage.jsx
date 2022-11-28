@@ -1,11 +1,13 @@
 import React from 'react'
+import error from '../../assets/error.jpg'
+import Navbar from '../../components/Navbar/Navbar'
 
 const ErrorPage = () => {
   return (
     <div>
-        <h1 className="text-10xl-font-bold text-center">
-            404 page not found
-        </h1>
+        <Navbar />
+        
+        <img className='w-full h-[90vh] object-contain' src={error} alt="" />
     </div>
   )
 }
