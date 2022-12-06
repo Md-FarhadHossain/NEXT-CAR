@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 const MyPorduct = () => {
   const [res, setRes] = useState(true);
   const [cars, setCars] = useState([]);
+  
   const { user } = useContext(UserContext);
 
   // const {data:allcarsDetails = [], status, refetch} = useQuery({
@@ -39,6 +40,7 @@ const MyPorduct = () => {
       console.log(data);
     });
   };
+
   
   const handleCarBoots = (id) => {
 
@@ -62,9 +64,7 @@ const MyPorduct = () => {
     })
   }
 
-  // if(status === 'loading') {
-  //   return <><h1 className="text-3xl font-semibold">Loading</h1></>
-  // }
+
 
   return (
     <div className="lg:px-24 px-4 py-8">
