@@ -6,11 +6,15 @@
 <div align="center">
   <h3>
     <a href="https://next-car-61df2.web.app">
-      Demo
+      Live Site
     </a>
     <span> | </span>
     <a href="https://github.com/Md-FarhadHossain/NEXT-CAR">
-      Solution
+      Client Side
+    </a>
+    <span> | </span>
+    <a href="https://github.com/Md-FarhadHossain/NEXT-CAR-server">
+      Server Side
     </a>
   </h3>
 </div>
