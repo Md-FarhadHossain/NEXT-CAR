@@ -37,12 +37,7 @@
 
 ![screenshot](https://i.ibb.co/fQCRHrB/Screenshot-3.png)
 
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
-
-- Where can I see your demo?
-- What was your experience?
-- What have you learned/improved?
-- Your wisdom? :)
+It's a car-selling website where users can buy and sell cars. User can sell their used car on this website. The seller can add or delete their vehicle. Buyers can buy cars from this website with the help of Mastercard. Payment will be taken by stripe. And the best part is the seller can advertise their vehicle on this website. Admin, Seller, and Buyer have their own dashboard. Admin can see all sellers and buyers both. The seller can see Add a car, My added car. Buyers can see their orders.
 
 ### Built With
 
@@ -56,6 +51,10 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 - [Daisyui](https://daisyui.com)
 
 ## Features
+
+- Next-Car is a car-selling website. Users can buy and sell cars from this website. Sellers can sell their used cars.
+- The seller can add, delete, and advertise their car from the dashboard. And the buyer can see their car on the dashboard and pay by Stripe with Mastercard.
+- Admin can see and delete all the sellers, buyers, and reported items.
 
 
 ## How To Use
