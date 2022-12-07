@@ -29,6 +29,7 @@
 - [How to use](#how-to-use)
 - [Contact](#contact)
 - [Acknowledgements](#acknowledgements)
+- [Features](#features)
 
 <!-- OVERVIEW -->
 
@@ -48,6 +49,9 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
 - [React](https://reactjs.org/)
+- [Node.js](https://nodejs.org/)
+- [Express.js](https://expressjs.com/)
+- [MongoDB](https://mongodb.com/)
 - [Tailwind](https://tailwindcss.com/)
 - [Daisyui](https://daisyui.com)
 
