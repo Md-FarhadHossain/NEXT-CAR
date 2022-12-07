@@ -2,8 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/AuthContext";
 import logo from "../../assets/logo.png";
-import { AccountType } from "../../context/UserAccoutContext";
-import { useState } from "react";
+
 
 const Navbar = () => {
   const { user, logout } = useContext(UserContext);
@@ -16,14 +15,14 @@ const Navbar = () => {
   const menu = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <Link className="text-lg font-semibold" to="/">Home</Link>
       </li>
       <li>
-        <Link to="/blog">Blog</Link>
+        <Link className="text-lg font-semibold" to="/blog">Blog</Link>
       </li>
       {user ? (
         <li>
-          <Link to="/dashbord">Dashbord</Link>
+          <Link className="text-lg font-semibold" to="/dashbord">Dashbord</Link>
         </li>
       ) : (
         ""
@@ -31,7 +30,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div>
+    <div className="bg-white z-50 py-2 shadow-md w-full sticky top-0">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
