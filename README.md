@@ -35,7 +35,7 @@
 
 ## Overview
 
-![screenshot](https://i.ibb.co/BKBHm8k/Screenshot-2.png)
+![screenshot](https://i.ibb.co/fQCRHrB/Screenshot-3.png)
 
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
