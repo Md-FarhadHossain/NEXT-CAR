@@ -11,11 +11,11 @@ const HeroSection = () => {
       backgroundAttachment: 'fixed'
     }} className="">
       <div className="hero  h-[86vh] relative bg-gradient-to-r from-[#f1b1b1] to-[#82e6e8e2]">
-        <div className="container mx-auto flex items-center justify-between">
+        <div className="container mx-auto flex items-center justify-between flex-col lg:flex-row md:flex-row">
           {/* Left side */}
           <div className="mr-8">
-            <div className="">
-              <h1 className="lg:text-7xl md:text-6xl text-5xl font-extrabold">
+            <div className="text-center lg:text-left md:text-left">
+              <h1 className="lg:text-7xl md:text-4xl text-5xl font-extrabold">
                 Choose Your Favourite Car
               </h1>
               <p className="py-6 text-2xl">
@@ -27,7 +27,7 @@ const HeroSection = () => {
           </div>
 
           {/* Right side */}
-          <div className="flex justify-end">
+          <div className="flex lg:justify-end md:justify-end justify-center">
             <img className="w-[85%]" src={carImage} alt="carImage" />
           </div>
 
