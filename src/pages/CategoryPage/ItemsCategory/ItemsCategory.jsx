@@ -18,7 +18,8 @@ const ItemsCategory = () => {
 
 
   return (
-    <div className="container mx-auto px-4 lg:px-0 py-16">
+    <div  data-aos="fade-up"
+         data-aos-duration="1000" className="container mx-auto px-4 lg:px-0 py-16">
       <h1 className="text-3xl font-semibold text-center mb-8">
         Browse cars by category 
       </h1>

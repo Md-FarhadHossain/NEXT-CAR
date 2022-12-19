@@ -14,7 +14,7 @@ const ContactUs = () => {
         <div>
         </div>
        <div className='relative pt-40 pb-80 bg-[#000000e6]'>
-       <div className="container  mx-auto flex flex-col justify-center items-center px-4 lg:px-0 mt-32">
+       <div data-aos="zoom-in" className="container  mx-auto flex flex-col justify-center items-center px-4 lg:px-0 mt-32">
         <div className="text-center">
           <h4 className="font-bold text-secondary">Contact Us</h4>
           <h1 className="text-4xl text-white mb-12">Stay connected with us</h1>

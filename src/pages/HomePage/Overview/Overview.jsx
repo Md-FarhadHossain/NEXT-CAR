@@ -26,7 +26,8 @@ const Overview = () => {
   return (
 
 
-    <div className="relative">
+    <div  data-aos="fade-up"
+         data-aos-anchor-placement="bottom-bottom" className="relative">
         <div className="container mx-auto px-4 lg:px-0 py-16">
       <div>
         <h1 className="text-3xl text-center font-semibold pb-8">

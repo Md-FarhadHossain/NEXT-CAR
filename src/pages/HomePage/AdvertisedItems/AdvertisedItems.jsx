@@ -54,7 +54,8 @@ const AdvertisedItems = ({advertises}) => {
   };
   console.log(advertises)
   return (
-    <div className='container mx-auto px-4 lg:px-0 py-16'>
+    <div data-aos="fade-up"
+         data-aos-duration="3000" className='container mx-auto px-4 lg:px-0 py-16'>
 
       <h1 className="text-3xl text-center font-semibold pb-8">Advertised items</h1>
 
