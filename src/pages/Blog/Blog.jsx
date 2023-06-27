@@ -22,6 +22,7 @@ const Blog = () => {
             question: 'React vs. Angular vs. Vue?',
             answer: `Popularity. According to a survey by Stack Overflow 40.13% of the developers believe that React is the most commonly used JavaScript Framework. Angular and Vue follow it with 22.96% and 18.97%, respectively.One of the main reasons for the popularity of React is that it works very efficiently with the DOM. Vue also uses the virtual DOM, but compared to React, Vue has better performance and stability.t's easier to learn Vue than angular and it reasonably takes the same amount of time and effort as learning react. Although some people argue that it's even easier to learn than react but that's of course subjective and varies from person to person.React is better than Angular due to it's virtual DOM implementation and rendering optimizations. Migrating between React's versions is quite easy, too; you don't need to install updates one by one, as in the case of Angular. Finally, with React, developers have myriads of existing solutions they can use.`
         },
+        
     ]
   return (
     <div className='lg:px-0 px-4'>
